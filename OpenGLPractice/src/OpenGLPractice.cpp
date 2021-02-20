@@ -66,7 +66,7 @@ static unsigned int createShader(const std::string& vertexShader, const std::str
     unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShader);
     unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
-    glCall(glAttachShader(program, vs)); //
+    glAttachShader(program, vs); // must not break this!
     glCall(glAttachShader(program, fs));
     glCall(glLinkProgram(program));
     glCall(glValidateProgram(program));
@@ -94,6 +94,7 @@ int main(void)
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
+    glfwSwapInterval(1);
 
     if (!gladLoadGL()) {
         printf("glad Initialization error\n");
@@ -111,7 +112,7 @@ int main(void)
 
     unsigned int indices[] = {
         0, 1, 2,
-        1, 2, 3
+        2, 3, 0
     };
 
     unsigned int vao;
@@ -145,7 +146,7 @@ int main(void)
     glCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
     glCall(glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0));
 
-    float r = 0.0f;
+    float r = 0.8f;
     float increment = 0.05f;
     /* Loop until the user closes the window */
     while (!glfwWindowShouldClose(window))
@@ -170,6 +171,7 @@ int main(void)
         else if (r < 0.0f) {
             increment = 0.05f;
         }
+        r += increment;
 
         /* Swap front and back buffers */
         glfwSwapBuffers(window);
