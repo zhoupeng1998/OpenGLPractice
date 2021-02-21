@@ -10,6 +10,7 @@
 #include "renderer.h"
 #include "vertex_buffer.h"
 #include "index_buffer.h"
+#include "vertex_array.h"
 
 struct ShaderProgramSource {
     std::string vertexSource;
@@ -118,14 +119,19 @@ int main(void)
             2, 3, 0
         };
 
-        unsigned int vao;
-        glCall(glGenVertexArrays(1, &vao));
-        glCall(glBindVertexArray(vao));
+        //unsigned int vao;
+        //glCall(glGenVertexArrays(1, &vao));
+        //glCall(glBindVertexArray(vao));
 
+        VertexArray va;
         VertexBuffer vb(positions, 4 * 2 * sizeof(float));
 
-        glCall(glEnableVertexAttribArray(0));
-        glCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
+        VertexBufferLayout layout;
+        layout.push<float>(2);
+        va.addBuffer(vb, layout);
+
+        //glCall(glEnableVertexAttribArray(0));
+        //glCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
 
         IndexBuffer ib(indices, 6);
 
@@ -154,7 +160,8 @@ int main(void)
             glCall(glUseProgram(shader));
             glCall(glUniform4f(location, r, 0.3f, 0.8f, 1.0f));
 
-            glCall(glBindVertexArray(vao));
+            //glCall(glBindVertexArray(vao));
+            va.bind();
             //glCall(glBindBuffer(GL_ARRAY_BUFFER, buffer));
             //glCall(glEnableVertexAttribArray(0));
             //glCall(glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, sizeof(float) * 2, 0));
