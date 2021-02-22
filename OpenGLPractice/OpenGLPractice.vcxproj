@@ -149,6 +149,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\shader.cpp" />
     <ClCompile Include="src\index_buffer.cpp" />
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="res\glad.c" />
@@ -160,6 +161,7 @@
   <ItemGroup>
     <ClInclude Include="src\index_buffer.h" />
     <ClInclude Include="src\renderer.h" />
+    <ClInclude Include="src\shader.h" />
     <ClInclude Include="src\vertex_buffer.h" />
     <ClInclude Include="src\vertex_array.h" />
     <ClInclude Include="src\vertex_buffer_layout.h" />
