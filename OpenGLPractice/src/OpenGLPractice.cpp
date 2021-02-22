@@ -7,11 +7,11 @@
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 
-#include "renderer.h"
 #include "vertex_buffer.h"
 #include "index_buffer.h"
 #include "vertex_array.h"
 #include "shader.h"
+#include "renderer.h"
 
 int main(void)
 {
