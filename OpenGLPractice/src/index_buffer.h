@@ -1,4 +1,4 @@
-#ifndef IDNEX_BUFFER_H_
+#ifndef INDEX_BUFFER_H_
 #define	INDEX_BUFFER_H_
 
 class IndexBuffer {
@@ -13,7 +13,12 @@ public:
 	void bind() const;
 	void unbind() const;
 
-	inline unsigned int getCount() const;
+	//unsigned int getCount() const;
+
+	inline unsigned int getCount() const {
+		return count;
+	}
+
 };
 
 #endif // !INDEX_BUFFER_H_

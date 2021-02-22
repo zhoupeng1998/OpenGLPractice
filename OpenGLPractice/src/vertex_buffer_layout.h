@@ -5,7 +5,7 @@
 //#include <gl/GL.h>
 #include <glad/glad.h>
 
-#include "renderer.h"
+#include "utils.h"
 
 struct VertexBufferElement {
 	unsigned int type;

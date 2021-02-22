@@ -1,15 +1,13 @@
 #include <iostream>
 
 #include "renderer.h"
+#include "utils.h"
 
-void glClearError() {
-    while (glGetError() != GL_NO_ERROR);
+void Renderer::draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const {
+    shader.bind();
+    va.bind();
+    ib.bind();
+    glCall(glDrawElements(GL_TRIANGLES, ib.getCount(), GL_UNSIGNED_INT, nullptr));
 }
 
-bool glLogCall(const char* function, const char* file, int line) {
-    while (GLenum error = glGetError()) {
-        std::cout << "OpenGL error - " << error << " " << function << " " << file << ":" << line << std::endl;
-        return false;
-    }
-    return true;
-}
+

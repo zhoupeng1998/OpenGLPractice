@@ -1,16 +1,13 @@
 #ifndef RENDERER_H_
 #define RENDERER_H_
 
-#include <iostream>
+#include "vertex_array.h"
+#include "index_buffer.h"
+#include "shader.h"
 
-#include <glad/glad.h>
-
-#define ASSERT(x) if(!(x)) __debugbreak();
-#define glCall(x) glClearError();\
-    x;\
-    ASSERT(glLogCall(#x, __FILE__, __LINE__));
-
-void glClearError();
-bool glLogCall(const char* function, const char* file, int line);
+class Renderer {
+public:
+    void draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
+};
 
 #endif // !RENDERER_H_

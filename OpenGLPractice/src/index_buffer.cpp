@@ -1,5 +1,5 @@
 #include "index_buffer.h"
-#include "renderer.h"
+#include "utils.h"
 
 IndexBuffer::IndexBuffer(const unsigned int* data, unsigned int cnt): count(cnt) {
     glCall(glGenBuffers(1, &rendererId));
@@ -19,6 +19,8 @@ void IndexBuffer::unbind() const {
     glCall(glBindBuffer(GL_ARRAY_BUFFER, 0));
 }
 
-inline unsigned int IndexBuffer::getCount() const {
+/*
+unsigned int IndexBuffer::getCount() const {
     return count;
 }
+*/

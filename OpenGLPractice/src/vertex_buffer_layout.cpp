@@ -13,4 +13,6 @@ unsigned int VertexBufferElement::getSizeOfType(unsigned int type)
 	case GL_UNSIGNED_BYTE:
 		return sizeof(GLubyte);
 	}
+	// never reach!
+	//return 0;
 }
