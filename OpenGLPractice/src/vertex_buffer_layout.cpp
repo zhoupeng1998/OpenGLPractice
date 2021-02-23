@@ -14,5 +14,5 @@ unsigned int VertexBufferElement::getSizeOfType(unsigned int type)
 		return sizeof(GLubyte);
 	}
 	// never reach!
-	//return 0;
+	return 0;
 }

@@ -74,7 +74,7 @@ unsigned int Shader::createShader(const std::string& vertexShader, const std::st
     unsigned int vs = compileShader(GL_VERTEX_SHADER, vertexShader);
     unsigned int fs = compileShader(GL_FRAGMENT_SHADER, fragmentShader);
 
-    glAttachShader(program, vs); // must not break this!
+    glCall(glAttachShader(program, vs));
     glCall(glAttachShader(program, fs));
     glCall(glLinkProgram(program));
     glCall(glValidateProgram(program));
@@ -84,15 +84,23 @@ unsigned int Shader::createShader(const std::string& vertexShader, const std::st
     return program;
 }
 
+void Shader::setUniform1i(const std::string& name, int value) {
+    glCall(glUniform1i(getUniformLocation(name), value));
+}
+
+void Shader::setUniform1f(const std::string& name, float value) {
+    glCall(glUniform1f(getUniformLocation(name), value));
+}
+
 void Shader::setUniform4f(const std::string& name, float v0, float v1, float v2, float v3) {
     glCall(glUniform4f(getUniformLocation(name), v0, v1, v2, v3));
 }
 
-unsigned int Shader::getUniformLocation(const std::string& name) {
+int Shader::getUniformLocation(const std::string& name) {
     if (uniformLocationCache.find(name) != uniformLocationCache.end()) {
         return uniformLocationCache[name];
     }
-    unsigned int location;
+    int location;
     glCall(location = glGetUniformLocation(rendererId, name.c_str()));
     if (location == -1) {
         std::cout << "Warning uniform '" << name << "' does not exist." << std::endl;

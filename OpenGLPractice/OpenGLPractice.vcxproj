@@ -154,6 +154,7 @@
     <ClCompile Include="src\renderer.cpp" />
     <ClCompile Include="res\glad.c" />
     <ClCompile Include="src\application.cpp" />
+    <ClCompile Include="src\texture.cpp" />
     <ClCompile Include="src\utils.cpp" />
     <ClCompile Include="src\vertex_buffer.cpp" />
     <ClCompile Include="src\vertex_array.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="src\index_buffer.h" />
     <ClInclude Include="src\renderer.h" />
     <ClInclude Include="src\shader.h" />
+    <ClInclude Include="src\texture.h" />
     <ClInclude Include="src\utils.h" />
     <ClInclude Include="src\vertex_buffer.h" />
     <ClInclude Include="src\vertex_array.h" />

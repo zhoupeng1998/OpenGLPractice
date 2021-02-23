@@ -12,6 +12,7 @@
 #include "index_buffer.h"
 #include "vertex_array.h"
 #include "vertex_buffer_layout.h"
+#include "texture.h"
 #include "shader.h"
 
 #include "utils.h"
@@ -45,10 +46,10 @@ int main(void)
     
     {
         float positions[] = {
-            -0.5f, -0.5f,
-             0.5f, -0.5f,
-             0.5f,  0.5f,
-            -0.5f,  0.5f
+            -0.5f, -0.5f,     0.0f, 0.0f,
+             0.5f, -0.5f,     1.0f, 0.0f,
+             0.5f,  0.5f,     1.0f, 1.0f,
+            -0.5f,  0.5f,     0.0f, 1.0f
         };
 
         unsigned int indices[] = {
@@ -56,10 +57,14 @@ int main(void)
             2, 3, 0
         };
 
+        glCall(glEnable(GL_BLEND));
+        glCall(glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA));
+
         VertexArray va;
-        VertexBuffer vb(positions, 4 * 2 * sizeof(float));
+        VertexBuffer vb(positions, 4 * 4 * sizeof(float));
 
         VertexBufferLayout layout;
+        layout.push<float>(2);
         layout.push<float>(2);
         va.addBuffer(vb, layout);
 
@@ -67,8 +72,11 @@ int main(void)
 
         Shader shader("res/shaders/Basic.shader");
         shader.bind();
-
         shader.setUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+
+        Texture texture("res/textures/sample.png");
+        texture.bind();
+        shader.setUniform1i("u_Texture", 0);
 
         va.unbind();
         shader.unbind();
