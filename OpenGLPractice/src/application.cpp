@@ -6,6 +6,8 @@
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
 
 #include "renderer.h"
 #include "vertex_buffer.h"
@@ -14,11 +16,9 @@
 #include "vertex_buffer_layout.h"
 #include "texture.h"
 #include "shader.h"
-
 #include "utils.h"
 
-int main(void)
-{
+int main(void) {
     GLFWwindow* window;
 
     /* Initialize the library */
@@ -27,8 +27,7 @@ int main(void)
 
     /* Create a windowed mode window and its OpenGL context */
     window = glfwCreateWindow(640, 480, "Hello World", NULL, NULL);
-    if (!window)
-    {
+    if (!window) {
         glfwTerminate();
         return -1;
     }
@@ -70,9 +69,12 @@ int main(void)
 
         IndexBuffer ib(indices, 6);
 
+        glm::mat4 proj = glm::ortho(-2.0f, 2.0f, -1.5f, 1.5f, -1.0f, 1.0f);
+
         Shader shader("res/shaders/Basic.shader");
         shader.bind();
         shader.setUniform4f("u_Color", 0.8f, 0.3f, 0.8f, 1.0f);
+        shader.setUniformMat4f("u_MVP", proj);
 
         Texture texture("res/textures/sample.png");
         texture.bind();
@@ -88,8 +90,7 @@ int main(void)
         float r = 0.8f;
         float increment = 0.05f;
         /* Loop until the user closes the window */
-        while (!glfwWindowShouldClose(window))
-        {
+        while (!glfwWindowShouldClose(window)) {
             /* Render here */
             glCall(glClear(GL_COLOR_BUFFER_BIT));
 
