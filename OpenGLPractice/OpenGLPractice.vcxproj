@@ -149,6 +149,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="res\imgui\imgui.cpp" />
+    <ClCompile Include="res\imgui\imgui_demo.cpp" />
+    <ClCompile Include="res\imgui\imgui_draw.cpp" />
+    <ClCompile Include="res\imgui\imgui_impl_glfw.cpp" />
+    <ClCompile Include="res\imgui\imgui_impl_opengl3.cpp" />
+    <ClCompile Include="res\imgui\imgui_tables.cpp" />
+    <ClCompile Include="res\imgui\imgui_widgets.cpp" />
     <ClCompile Include="src\shader.cpp" />
     <ClCompile Include="src\index_buffer.cpp" />
     <ClCompile Include="src\renderer.cpp" />
@@ -161,6 +168,14 @@
     <ClCompile Include="src\vertex_buffer_layout.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="res\imgui\imconfig.h" />
+    <ClInclude Include="res\imgui\imgui.h" />
+    <ClInclude Include="res\imgui\imgui_impl_glfw.h" />
+    <ClInclude Include="res\imgui\imgui_impl_opengl3.h" />
+    <ClInclude Include="res\imgui\imgui_internal.h" />
+    <ClInclude Include="res\imgui\imstb_rectpack.h" />
+    <ClInclude Include="res\imgui\imstb_textedit.h" />
+    <ClInclude Include="res\imgui\imstb_truetype.h" />
     <ClInclude Include="src\index_buffer.h" />
     <ClInclude Include="src\renderer.h" />
     <ClInclude Include="src\shader.h" />
